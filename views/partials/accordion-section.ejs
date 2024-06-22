@@ -1,0 +1,19 @@
+
+
+<div class="accordion accordion-flush my-3 " id="accordionFlushExample">
+  <% faqs.forEach(element => { %>
+ <div class="accordion-item ">
+    <h2 class="accordion-header" id="flush-heading<%= element.id %>">
+      <button class="accordion-button collapsed px-1" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= element.id %>" aria-expanded="false" aria-controls="flush-collapse<%= element.id %>">
+        <b><%= element.title %></b>
+      </button>
+    </h2>
+    <div id="flush-collapse<%= element.id %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= element.id %>" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body px-2"><%= element.description %></div>
+    </div>
+  </div>
+    <% }) %>
+  
+  
+</div>
+

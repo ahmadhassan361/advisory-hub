@@ -1,0 +1,110 @@
+<%- include('./partials/header.ejs') %>
+<section>
+    <div class="container mt-5">
+        <h1 class="p-4 text-center bg-primary text-light">Manage FAQ's</h1>
+        <div class="row">
+            <div class="col-12 col-md-4 ">
+                <h3 class="p-2 text-center bg-primary text-light">Create FAQ</h3>
+                <form class="py-2" action="/faq-create" method="post">
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="title" name="title" aria-describedby="title" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Description</label>
+                      <textarea  class="form-control" name="description" id="description"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="col-12 col-md-8 ps-1">
+                <h3 class="p-2 text-center bg-primary text-light">All FAQ's</h3>
+                
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% faqs.forEach(element => { %>
+                 <tr>
+                        <th scope="row"><%= element.id %></th>
+                        <td><%= element.title %></td>
+                        <td><%= element.description %></td>
+                      </tr>
+                            <% }) %>
+                      
+                     
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container mt-5">
+        <h1 class="p-4 text-center bg-primary text-light">Manage Posts</h1>
+        <div class="row">
+            <div class="col-12 col-md-4 ">
+                <h3 class="p-2 text-center bg-primary text-light">Create Post</h3>
+                <form class="py-2" action="/post-create" method="post">
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="title" name="title" aria-describedby="title" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Image</label>
+                      <input type="text" class="form-control" id="image" name="image" aria-describedby="image" >
+                    </div>
+                    <div class="mb-3">
+                      <label for="category" class="form-label">Select Category</label>
+                      <select class="form-select" name="category" aria-label="Default select example">
+                        <option value="Case Studies">Case Studies</option>
+                        <option value="Insights">Insights</option>
+                      </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Description</label>
+                      <textarea  class="form-control" name="description" id="description"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="col-12 col-md-8 ps-1">
+                <h3 class="p-2 text-center bg-primary text-light">All Posts</h3>
+                
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% posts.forEach(element => { %>
+                 <tr>
+                        <th scope="row"><%= element.id %></th>
+                        <td><%= element.title %></td>
+                        <td><%= element.category %></td>
+                        <td><img src="<%= element.image %>" width="80" alt="" srcset=""></td>
+                        <td><%= element.description %></td>
+                      </tr>
+                            <% }) %>
+                      
+                     
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include('./partials/footer.ejs') %>

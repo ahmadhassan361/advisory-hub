@@ -1,0 +1,172 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/navbar.ejs') %>
+
+        <div class="container mt-5">
+            <div class="d-flex">
+                <h6>Welcome</h6>, 
+                <img class="ms-2" height="20" src="/images/wave.png" alt="" srcset="">
+            </div>
+            <h4>
+                <% if (user) { %>
+                    <%= user.username %>
+                  <% } %>
+               
+              </h4>
+              
+
+
+
+            <div class="text-center main-text-margin">
+                <h1 class="fw-bold">Info Hub</h1>
+                <p>Browse our range of information below</p>
+            </div>
+
+            <%- include('./partials/accordion-section.ejs') %>
+
+
+            <% posts.forEach((element, index) => { %>
+                <div class="mt-5">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="fw-bold"><%= element.category %></h4>
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <button class="bg-light rounded-circle border mx-1 px-2" type="button"
+                                    data-bs-target="#cardCarousel<%= index %>" data-bs-slide="prev">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button class="bg-light rounded-circle border mx-1 px-2" type="button"
+                                    data-bs-target="#cardCarousel<%= index %>" data-bs-slide="next">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div id="cardCarousel<%= index %>" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <% let numSlides = Math.ceil(element.posts.length / 3); %>
+                            <% for (let i = 0; i < numSlides; i++) { %>
+                                <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                                    <div class="row">
+                                        <% for (let j = i * 3; j < Math.min((i + 1) * 3, element.posts.length); j++) { %>
+                                            <div class="col-md-4">
+                                                <div class="card border-0 rounded-0">
+                                                    <img src="<%= element.posts[j].image %>" class="card-img-top rounded-0"
+                                                        height="220" alt="...">
+                                                    <div class="card-body px-0">
+                                                        <h6 class="card-title px-0"><%= element.posts[j].title %></h6>
+                                                        <!-- Adjust as needed to display other post attributes -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+            
+
+                
+
+                <!-- <div class="mt-5">
+                    <div class="d-flex justify-content-between">
+                        <h4 class="fw-bold">Insights</h4>
+                        <div>
+
+                            <div class="d-flex align-items-center">
+
+                                <button class="bg-light rounded-circle border mx-1 px-2" type="button"
+                                    data-bs-target="#cardCarousel2" data-bs-slide="prev">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button class="bg-light rounded-circle border mx-1 px-2" type="button"
+                                    data-bs-target="#cardCarousel2" data-bs-slide="next">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cardCarousel2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card border-0 rounded-0">
+                                            <img src="https://via.placeholder.com/80" class="card-img-top rounded-0"
+                                                height="220" alt="...">
+                                            <div class="card-body px-0">
+                                                <h6 class="card-title px-0">Card title 1</h6>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+
+
+        </div>
+
+<%- include('./partials/footer.ejs') %>
